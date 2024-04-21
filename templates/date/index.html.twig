@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <article>
+        {% for flashMessage in app.flashes('error') %}
+            <div class="error">{{ flashMessage }}</div>
+        {% endfor %}
+        <form action="/date/decode" method="GET">
+            <label for="date">Date (Y-m-d):</label>
+            <input type="text" id="date" name="date" pattern="\d{4}-\d{2}-\d{2}" required>
+            <br>
+            <label for="timezone">Timezone:</label>
+            <select id="timezone" name="timezone" required>
+                <option value="">Select Timezone</option>
+                <option value="Europe/London">Europe/London</option>
+                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                <option value="America/Lower_Princes">America/Lower_Princes</option>
+                <!-- Добавьте другие часовые пояса, если необходимо -->
+            </select>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </article>
+</div>
+{% endblock %}
